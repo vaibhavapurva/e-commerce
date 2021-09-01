@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 4em;
+  }
+  .card {
+    text-align: center;
+    padding: 10px;
+    width: 600px;
+    border-radius: 39px;
+    padding: 1em;
+    color: black;
+    box-shadow: rgba(211, 19, 19, 0.2) 0px 2px 8px 0px;
+  }
+  img {
+    width :15rem ;
+    height:15rem;
+  }
