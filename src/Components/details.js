@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { fetchDetail } from "../Service/api";
 import './details.css';
 import Button  from 'react-bootstrap/Button';
@@ -15,16 +15,28 @@ const Detail =()=>{
     const {id} = useParams();
     console.log(id)
     const dispatch = useDispatch();
+    const history =useHistory();
     useEffect(()=>{
         dispatch(fetchDetail(id));
     },[])
     const detail = useSelector((state => state.detail));
+    const token = useSelector((state=> state.token))
     console.log("del",detail);
     const buyNow=(id)=>{
-        dispatch(buy(id));
+        // dispatch(buy(id));
+        if(!token){
+            history.push('/signin');
+        }else{
+            dispatch(cart(id))
+            history.push(`/checkout`)
+        }
     }
     const AddCart=(id)=>{
-        dispatch(cart(id));
+        if(!token){
+            history.push('/signin');
+        }else{
+            dispatch(cart(id))
+        }
     }
     return(
         <>

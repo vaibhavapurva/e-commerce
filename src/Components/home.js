@@ -5,7 +5,7 @@ import { fetchAllData } from "../Service/api";
 import { Button, Card } from 'react-bootstrap';
 import { useHistory } from "react-router";
 import { setLimit } from "../actions";
-import {setLimitApi , setSort} from "../Service/api"
+import {setLimitApi , setSort , setDa ,setcategory} from "../Service/api"
 
 
 const Home = () => {
@@ -23,6 +23,12 @@ const Home = () => {
     }
     const onValueLimit =(e)=>{
         dispatch(setSort(e.target.value))
+    }
+    const onValueSort =(e)=>{
+        dispatch(setDa(e.target.value))
+    }
+    const onValueCat =(e)=>{
+        dispatch(setcategory(e.target.value))
     }
 
     // const limit = (e)=>{
@@ -42,6 +48,22 @@ const Home = () => {
             <form>
             Limit:<input name="limit" type="search" placeholder="enter you limit " onChange={(e) => onValueLimit(e)} />
                 {/* <Button onClick={() => sort()} variant="primary" type="submit" >Login </Button> */}
+            </form>
+            <form>
+                <select name="catnm" onChange={(e)=> onValueSort(e)}>
+                    <option>Sort</option>
+                    <option> desc</option>
+                    <option> asc</option>
+                </select>
+            </form>
+            <form>
+                <select name="category" onChange={(e)=> onValueCat(e)}>
+                <option>category </option>
+                    <option>men's clothing </option>
+                    <option> women's clothing</option>
+                    <option> electronics</option>
+                    <option> jewelery</option>
+                </select>
             </form>
             <div ClassName='container'>
                 {

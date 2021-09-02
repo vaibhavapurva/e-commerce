@@ -10,6 +10,8 @@ import SignIn from './Components/signIn';
 import SignUp from './Components/signUp';
 import NavBar from './Components/NavBar';
 import Detail from './Components/details';
+import CheCkout from './Components/checkout';
+import PrivateRoute from './Components/PrivateRoutes';
 const store = createStore(Reducer , applyMiddleware(thunk));
 function App() {
   return (
@@ -23,6 +25,7 @@ function App() {
           <Route exact path="/SignIn" component={SignIn}/>
           <Route exact path="/SignUp" component={SignUp}/>
           <Route exact path="/detail/:id" component={Detail}/>
+          <PrivateRoute exact path="/checkout" component={CheCkout}/>
         </Switch>
         </BrowserRouter>
         </Provider>

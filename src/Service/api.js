@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setFetchData } from '../actions';
-import { setFetchDetail } from '../actions';
+import { setFetchDetail , loginToken } from '../actions';
 const url ="https://fakestoreapi.com";
 
 
@@ -44,7 +44,7 @@ export const buy=(id)=>async(dispatch , getState)=>{
 export const cart=(id)=>async(dispatch , getState)=>{
     try{
         console.log(id)
-        const response =await axios.get(`${url}/products/${id}`)
+        const response =await axios.post(`${url}/carts`);
         console.log("api cart",response.data);
     }catch(err){
 
@@ -79,3 +79,77 @@ export const setSort =(limit)=>async(dispatch , getState)=>{
         console.log("err");
     }
 }
+
+export const setDa =(limit)=>async(dispatch , getState)=>{
+    try{
+        console.log("aaaaa",limit)
+        const response =  await axios.get(`${url}/products?sort=${limit}`);
+        console.log("limit api ", response.data)
+        dispatch(setFetchData(response.data))
+        return response
+        
+    }catch(err){
+        console.log("err");
+    }
+}
+
+
+export const setcategory =(limit)=>async(dispatch , getState)=>{
+    try{
+        console.log("aaaaa",limit)
+        const response =  await axios.get(`${url}/products/category/${limit}`);
+        console.log("limit api ", response.data)
+        dispatch(setFetchData(response.data))
+        return response
+        
+    }catch(err){
+        console.log("err");
+    }
+}
+
+
+export const signUpApi=(data)=>async(dispatch ,getState)=>{
+    try{
+        // const response = await axios.post(`${url}/users/`,data);
+        // console.log(response.data)
+    }catch(err){
+        console.log("err")
+    }
+}
+
+
+export const signInApi=(data)=>async(dispatch , getState)=>{
+    // console.log("login api",data)
+    try{
+        console.log("login api",data)
+        // const response =await axios.post(`${url}/auth/login`,data);
+        const response = await axios.post(`${url}/auth/login`,data)
+        console.log(response.data);
+        window.localStorage.setItem('token' , response.data.token);
+        // dispatch(loginToken(response.data))
+    }catch(err){
+        console.log("ye err kya aa rhi ha")
+        console.log(err)
+    }
+}
+
+export const fetchAllCart=()=>async(dispatch, getState)=>{
+    try{
+        const response = await axios.post(`${url}/carts`)
+        console.log(response.data);
+    }catch(err){
+        console.log(err)
+    }
+}
+
+// export const signInApi=(state)=>{
+//     return async(dispatch)=>{
+//         try {
+//             const loginData=await request.post("/auth/login",state)  
+//             dispatch(login(loginData.data))
+            
+//         } catch (error) {
+            
+//         }
+//     }
+// }
