@@ -28,6 +28,7 @@ const Detail =()=>{
             history.push('/signin');
         }else{
             dispatch(cart(id))
+            dispatch(buy(id))
             history.push(`/checkout`)
         }
     }

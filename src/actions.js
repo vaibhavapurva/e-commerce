@@ -4,7 +4,7 @@ export const SET_LIMIT_DATA = 'SET_LIMIT_DATA';
 export const SET_SIGNUP = 'SET_SIGNUP';
 export const SET_SIGNIN ='SET_SIGNIN';
 export const SET_TOKEN = "SET_TOKEN";
-
+export const SET_CART = "SET_CART";
 // export const  setFetchData=(payload)=>{
 //     // console.log("payload", payload)
 //     return{
@@ -57,6 +57,13 @@ export const loginToken=(payload)=>{
     console.log("actis",payload)
     return{
         type:SET_TOKEN,
+        payload:payload
+    }
+}
+
+export const setCart=(payload)=>{
+    return{
+        type:SET_CART,
         payload:payload
     }
 }

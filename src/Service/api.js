@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { setFetchData } from '../actions';
-import { setFetchDetail , loginToken } from '../actions';
+import { setFetchDetail , loginToken , setCart} from '../actions';
 const url ="https://fakestoreapi.com";
 
 
@@ -33,8 +33,9 @@ export const fetchDetail=(id)=>async(dispatch, getState)=>{
 export const buy=(id)=>async(dispatch , getState)=>{
     try{
         console.log(id)
-        const response =await axios.get(`${url}/products/${id}`)
+        const response =await axios.get(`${url}/carts`)
         console.log("api",response.data);
+        dispatch(setCart(response.data))
     }catch(err){
 
     }
@@ -110,8 +111,8 @@ export const setcategory =(limit)=>async(dispatch , getState)=>{
 
 export const signUpApi=(data)=>async(dispatch ,getState)=>{
     try{
-        // const response = await axios.post(`${url}/users/`,data);
-        // console.log(response.data)
+         const response = await axios.post(`${url}/users/`,data);
+        console.log(response.data)
     }catch(err){
         console.log("err")
     }
@@ -135,8 +136,10 @@ export const signInApi=(data)=>async(dispatch , getState)=>{
 
 export const fetchAllCart=()=>async(dispatch, getState)=>{
     try{
+        console.log("cart api")
         const response = await axios.post(`${url}/carts`)
-        console.log(response.data);
+        console.log(response);
+        dispatch(setCart(response.data))
     }catch(err){
         console.log(err)
     }

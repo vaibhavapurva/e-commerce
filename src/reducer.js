@@ -1,4 +1,4 @@
-import { SET_FETCH_DATA, SET_FETCH_DETAIL, SET_LIMIT_DATA  , SET_SIGNUP,SET_SIGNIN, SET_TOKEN} from "./actions";
+import { SET_FETCH_DATA, SET_FETCH_DETAIL, SET_LIMIT_DATA  , SET_SIGNUP,SET_SIGNIN, SET_TOKEN ,SET_CART} from "./actions";
 const initialState={
     product:[],
     detail:[],
@@ -6,6 +6,7 @@ const initialState={
     signUp:[],
     signIn:[],
     token:localStorage.getItem("token"),
+    cart:[],
 }
 
 
@@ -52,6 +53,12 @@ function Reducer(state=initialState , action){
             return{
                 ...state,
                 token:action.payload.token
+            }
+        case SET_CART:
+            console.log("cart red", action.payload)
+            return{
+                ...state,
+                cart:action.payload
             }
         default:
             return state
